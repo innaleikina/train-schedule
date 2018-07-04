@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
+        crossorigin="anonymous"></script>
+    <link rel="stylesheet" type="text/css" href="./resources/css/normalize.css">
+    <link rel="stylesheet" type="text/css" href="./resources/css/style.css">
+    <link href="https://fonts.googleapis.com/css?family=PT+Sans:400,700" rel="stylesheet">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.1.0/css/all.css" integrity="sha384-lKuwvrZot6UHsBSfcMvOkWwlCMgc0TaWr+30HWe3a4ltaBwTZhyTEggF5tJv8tbt"
+        crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/momentjs/2.12.0/moment.min.js"></script>
+
+
+    <title> Train Scheduler </title>
+</head>
+<div id="header">
+    <h1> Train Scheduler </h1>
+    <h4 > Hello <span id="clientName"></span> </h4>
+</div>
+
+<div id="schedule-display">
+    <table id="schedule-table">
+        <tr>
+            <th> Train Name </th>
+            <th> Destination </th>
+            <th> Frequency </th>
+            <th> Next Arrival </th>
+            <th> Minutes Away </th>
+        </tr>
+
+    </table>
+
+</div>
+
+<form id="add-train-form">
+    <h4> add your own train </h4>
+    <label> Train Name</label>
+    <input id="name-input">
+
+    <label>Train Destination</label>
+    <input id="destination-input">
+
+    <label>First Train (HH:MM military time)</label>
+    <input id="start-time-input">
+
+    <label>Frequency</label>
+    <input id="frequency-input">
+
+
+    <button id="form-submit-btn">submit</button>
+</form>
+
+<body>
+
+
+    <script src="./resources/js/index.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/5.2.0/firebase.js"></script>
+</body>
+
+</html>
