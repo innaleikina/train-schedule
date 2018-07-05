@@ -10,9 +10,9 @@ $(document).ready(function () {
     };
     firebase.initializeApp(config);
 
-    function logIn(){
-        function newLogInHappened(user){
-            if(user){
+    function logIn() {
+        function newLogInHappened(user) {
+            if (user) {
                 display(user);
             } else {
                 var provider = new firebase.auth.GoogleAuthProvider();
@@ -23,12 +23,12 @@ $(document).ready(function () {
         firebase.auth().onAuthStateChanged(newLogInHappened);
     }
 
-    function display(user){
-      $("#clientName").text(user.displayName);
+    function display(user) {
+        $("#clientName").text(user.displayName);
     }
 
     window.onload = logIn;
-    
+
     var database = firebase.database();
 
     var trainNum = 4;
@@ -44,7 +44,7 @@ $(document).ready(function () {
         train2 = {
             name: "Windy Express",
             destination: "Chicago",
-            startTime: "14:00",
+            startTime: "12:00",
             frequency: "120"
         },
 
@@ -58,8 +58,8 @@ $(document).ready(function () {
         train4 = {
             name: "Foreign Express",
             destination: "Montreal",
-            startTime: "5:12pm",
-            frequency: "1"
+            startTime: "17:12",
+            frequency: "1440"
         }
     ]
 
@@ -91,25 +91,21 @@ $(document).ready(function () {
         var startTimeConverted = moment(trainsArr[i].startTime, "HH:mm").subtract(1, "years");
         // console.log(firstTimeConverted);
 
-        var currentTime = moment();
-        console.log("CURRENT TIME: " + moment(currentTime).format("hh:mm"));
-
-
         var diffTime = moment().diff(moment(startTimeConverted), "minutes");
-        console.log("DIFFERENCE IN TIME: " + diffTime);
+        // console.log("DIFFERENCE IN TIME: " + diffTime);
 
 
         // Time apart (remainder)
         var remainder = diffTime % trainsArr[i].frequency;
-        console.log(remainder);
+        // console.log(remainder);
 
         // Minute Until Train
         var minutesTillTrain = trainsArr[i].frequency - remainder;
-        console.log("MINUTES TILL TRAIN: " + minutesTillTrain);
+        // console.log("MINUTES TILL TRAIN: " + minutesTillTrain);
 
         // Next Train
-        var nextTrain = moment().add(minutesTillTrain, "minutes").format("ddd, hA");
-        console.log("ARRIVAL TIME: " + moment(nextTrain).format("hh:mm"));
+        var nextTrain = moment().add(minutesTillTrain, "minutes").format("ddd,  MMMM Do hA");
+        //console.log("ARRIVAL TIME: " + moment(nextTrain).format("hh:mm"));
 
 
         var newRow = $("<tr>").append(
@@ -117,7 +113,7 @@ $(document).ready(function () {
             $("<td>").text(trainsArr[i].destination),
             $("<td>").text(trainsArr[i].frequency + "m"),
             $("<td>").text(nextTrain),
-            $("<td>").text(minutesTillTrain)
+            $("<td>").text(minutesTillTrain + "m")
         );
 
         // Append the new row to the table
@@ -139,24 +135,21 @@ $(document).ready(function () {
         var startTimeConverted = moment(startTime, "HH:mm").subtract(1, "years");
         // console.log(firstTimeConverted);
 
-        var currentTime = moment();
-        console.log("CURRENT TIME: " + moment(currentTime).format("hh:mm"));
-
-
         var diffTime = moment().diff(moment(startTimeConverted), "minutes");
-        console.log("DIFFERENCE IN TIME: " + diffTime);
+        // console.log("DIFFERENCE IN TIME: " + diffTime);
 
 
         // Time apart (remainder)
         var remainder = diffTime % frequency;
-        console.log(remainder);
+        // console.log(remainder);
 
         // Minute Until Train
         var minutesTillTrain = frequency - remainder;
-        console.log("MINUTES TILL TRAIN: " + minutesTillTrain);
+
+        //console.log("MINUTES TILL TRAIN: " + minutesTillTrain);
 
         // Next Train
-        var nextTrain = moment().add(minutesTillTrain, "minutes").format("ddd, hA");
+        var nextTrain = moment().add(minutesTillTrain, "minutes").format("ddd,  MMMM Do hA");
         // nextTrain = moment().format("ddd,hA");
 
 
@@ -166,9 +159,9 @@ $(document).ready(function () {
             $("<td>").text(trainName),
             $("<td>").text(trainDestination),
 
-            $("<td>").text(frequency),
+            $("<td>").text(frequency + "m"),
             $("<td>").text(nextTrain),
-            $("<td>").text(minutesTillTrain)
+            $("<td>").text(minutesTillTrain + "m")
 
 
         );
